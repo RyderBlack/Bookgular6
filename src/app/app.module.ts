@@ -52,8 +52,7 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     AuthGuardService,
-    BooksService,
-    
+    BooksService
   ],
   bootstrap: [AppComponent],
   
