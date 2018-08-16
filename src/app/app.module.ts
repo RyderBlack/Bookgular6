@@ -16,6 +16,12 @@ import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BooksService } from './services/books.service';
 
+import { environment } from '../environments/environment';
+import * as firebase from 'firebase';
+
+export const firebaseConfig = environment.firebaseConfig;
+firebase.initializeApp(firebaseConfig);
+
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
   { path: 'auth/signin', component: SigninComponent },
@@ -46,8 +52,10 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     AuthGuardService,
-    BooksService
+    BooksService,
+    
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
