@@ -51,6 +51,7 @@ export class BooksService {
     this.books.push(newBook);
     this.saveBooks();
     this.emitBooks();
+    console.log(newBook);
   }
 
   uploadFile(file: File) {
@@ -61,10 +62,11 @@ export class BooksService {
           .child('images/' + almostUniqueFileName + file.name).put(file);
         upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
           () => {
-            console.log(file.name,'Chargement…');
+            console.log('loading…');
+            
           },
           (error) => {
-            console.log('Erreur de chargement ! : ' + error);
+            console.log('Error while loading file ! ' + error);
             reject();
           },
           () => {
@@ -75,29 +77,31 @@ export class BooksService {
     );
 }
 
-  removeBook(book: Book) {
-    if(book.photo) {
-      const storageRef = firebase.storage().refFromURL(book.photo);
-      storageRef.delete().then(
-        () => {
-          console.log('Photo removed!');
-        },
-        (error) => {
-          console.log('Could not remove photo! : ' + error);
-        }
-      );
-    }
-    const bookIndexToRemove = this.books.findIndex(
-      (bookEl) => {
-        if(bookEl === book) {
-          return true;
-        }
+removeBook(book: Book) {
+  console.log(book);
+  if(book.photo) {
+    const storageRef = firebase.storage().refFromURL(book.photo);
+    storageRef.delete().then(
+      () => {
+        console.log('Photo removed!');
+      },
+      (error) => {
+        console.log('Could not remove photo! : ' + error);
       }
     );
-    this.books.splice(bookIndexToRemove, 1);
-    this.saveBooks();
-    this.emitBooks();
   }
+  const bookIndexToRemove = this.books.findIndex(
+    (bookEl) => {
+      if(bookEl === book) {
+        return true;
+      }
+      
+    }
+  );
+  this.books.splice(bookIndexToRemove, 1);
+  this.saveBooks();
+  this.emitBooks();
+}
 
 
 }
