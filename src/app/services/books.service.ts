@@ -61,10 +61,10 @@ export class BooksService {
           .child('images/' + almostUniqueFileName + file.name).put(file);
         upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
           () => {
-            console.log('loading…');
+            console.log(file.name,'Chargement…');
           },
           (error) => {
-            console.log('Loading Error ! : ' + error);
+            console.log('Erreur de chargement ! : ' + error);
             reject();
           },
           () => {
@@ -73,7 +73,7 @@ export class BooksService {
         );
       }
     );
-  }
+}
 
   removeBook(book: Book) {
     if(book.photo) {
