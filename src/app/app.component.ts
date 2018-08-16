@@ -9,12 +9,12 @@ import * as firebase from 'firebase';
 export class AppComponent {
   constructor() {
     const config = {
-      apiKey: "AIzaSyA0sbwQDSzrep0Buic-u0Iw-6cRC-xAZ3U",
-      authDomain: "bookgular6.firebaseapp.com",
-      databaseURL: "https://bookgular6.firebaseio.com",
-      projectId: "bookgular6",
-      storageBucket: "bookgular6.appspot.com",
-      messagingSenderId: "883586689322"
+      apiKey: "AIzaSyDz_gJDqUN1n2pRd9gdAcxeCKIstQbpt7o",
+      authDomain: "bookgular6-3f963.firebaseapp.com",
+      databaseURL: "https://bookgular6-3f963.firebaseio.com",
+      projectId: "bookgular6-3f963",
+      storageBucket: "bookgular6-3f963.appspot.com",
+      messagingSenderId: "896174649423"
     };
     firebase.initializeApp(config);
   }
